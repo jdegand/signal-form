@@ -1,0 +1,35 @@
+<div>
+  <label for="password">Password</label>
+  <br>
+  <input type="password" ngModel [formField]="formModel.controls.passwords.controls.password" id="password" />
+</div>
+<div>
+  <label for="password-confirmation">Password Confirmation</label>
+  <br>
+  <input type="password" ngModel [formField]="formModel.controls.passwords.controls.passwordConfirmation"
+    id="password-confirmation" />
+</div>
+
+@if (formModel.controls.passwords.controls.passwordConfirmation.touched() &&
+formModel.controls.passwords.controls.passwordConfirmation.hasError('equalsTo')) {
+<p>
+  {{ formModel.controls.passwords.controls.passwordConfirmation.errorMessage('equalsTo') }}
+</p>
+}
+<div>
+  <pre>{{
+    {
+      state: formModel.state(),
+      dirtyState: formModel.dirtyState(),
+      touchedState: formModel.touchedState(),
+      valid: formModel.valid()
+    } | json
+  }}
+  </pre>
+
+  <h3>Value</h3>
+  <pre>{{ formModel.value() | json }}</pre>
+
+  <h3>Errors</h3>
+  <pre>{{ formModel.errorsArray() | json }}</pre>
+</div>
